@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ARQEDOX</title>
+  <meta name="description" content="ARQEDOX - Game downloads, tutorials, community and YouTube videos." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg1:#140909; --bg2:#2b0f0f; --accent:#ff2d55; --muted:rgba(255,255,255,0.92);
+      --card-bg: rgba(0,0,0,0.55); --box-bg: rgba(18,6,6,0.6);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;padding:0;overflow-x:hidden;font-family:Inter,system-ui,Roboto,sans-serif;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));color:var(--muted);scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:16px}
+
+    /* header */
+    header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,0.45);backdrop-filter:blur(6px);border-bottom:1px solid rgba(255,255,255,0.03)}
+    .topbar{display:flex;align-items:center;gap:12px;padding:12px 16px}
+    #site-logo{height:52px;border-radius:8px}
+    .brand-title{font-family:'Press Start 2P',cursive;color:var(--accent);font-size:18px}
+
+    /* hamburger */
+    .hamburger{margin-left:auto;cursor:pointer;padding:8px;display:flex;flex-direction:column;gap:6px;width:44px;height:36px;justify-content:center;align-items:center}
+    .hamburger .bar{display:block;width:28px;height:3px;background:var(--accent);border-radius:3px;transition:transform .25s ease,opacity .25s ease}
+    .hamburger.open .bar1{transform:translateY(6px) rotate(45deg)}
+    .hamburger.open .bar2{opacity:0}
+    .hamburger.open .bar3{transform:translateY(-6px) rotate(-45deg)}
+
+    /* side panel */
+    .side-panel-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);opacity:0;visibility:hidden;transition:opacity .25s ease;z-index:90}
+    .side-panel{position:fixed;right:-100%;top:0;height:100vh;width:60vw;max-width:420px;background:linear-gradient(180deg, rgba(30,8,8,0.98), rgba(10,6,6,0.98));box-shadow:-20px 0 50px rgba(0,0,0,0.7);z-index:95;padding:20px;transition:right .28s ease;display:flex;flex-direction:column}
+    @media (max-width:720px){ .side-panel{width:75vw} .brand-title{font-size:14px} #site-logo{height:46px} }
+    .side-panel.open{right:0}
+    .side-panel-backdrop.open{opacity:1;visibility:visible}
+    .side-header{display:flex;align-items:center;gap:12px;justify-content:space-between}
+    .side-title{font-family:'Press Start 2P';color:var(--accent);font-size:16px}
+    .close-btn{background:transparent;border:0;color:var(--accent);font-weight:700;cursor:pointer;font-size:18px}
+    .side-links{margin-top:28px;display:flex;flex-direction:column;gap:12px}
+    .side-links a{display:block;padding:12px;border-radius:12px;text-decoration:none;color:var(--accent);background:linear-gradient(180deg, rgba(0,0,0,0.12), transparent);border:1px solid rgba(255,45,85,0.06);font-weight:700}
+    .side-links a:hover{box-shadow:0 8px 30px rgba(255,45,85,0.08);transform:translateX(-6px)}
+
+    /* hero */
+    .hero{padding:36px 16px;background:linear-gradient(180deg,rgba(0,0,0,0.12),transparent)}
+    .hero-inner{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+    .hero-left{flex:1;min-width:260px}
+    .hero h1{font-family:'Press Start 2P',cursive;color:var(--accent);font-size:28px;margin:0 0 10px}
+    .hero p{margin:0 0 16px;color:rgba(255,255,255,0.85);max-width:720px;line-height:1.5}
+    .btn{display:inline-block;padding:12px 18px;border-radius:14px;font-weight:700;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+    .btn-accent{background:var(--accent);color:#000}
+
+    /* ad styling */
+    .ad-banner{display:flex;justify-content:center;margin:12px 0;padding:6px 0;}
+
+    /* sections */
+    section{padding:26px 16px}
+    h2.section-title{color:var(--accent);text-align:center;margin:6px 0 18px;font-size:20px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .video-box{background:var(--box-bg);border-radius:14px;padding:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,45,85,0.06);display:flex;flex-direction:column;gap:12px}
+    .video-embed{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;background:#000}
+    .video-embed iframe{position:absolute;left:0;top:0;width:100%;height:100%;border:0}
+    .video-title{font-weight:700;color:var(--accent);font-size:16px}
+    .video-channel{font-size:13px;color:rgba(255,255,255,0.8)}
+
+    .community-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+    .community-row a{padding:12px 16px;border-radius:12px;font-weight:700;background:var(--accent);color:#000}
+
+    @media (max-width:720px){ .hero h1{font-size:20px} .brand-title{font-size:14px} }
+
+    .fade-in{opacity:0;transform:translateY(18px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container topbar">
+      <img id="site-logo" src="logo.png" alt="ARQEDOX Logo">
+      <div class="brand-title">ARQEDOX</div>
+
+      <!-- Hamburger -->
+      <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false">
+        <span class="bar bar1"></span>
+        <span class="bar bar2"></span>
+        <span class="bar bar3"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- SIDE PANEL BACKDROP -->
+  <div id="side-backdrop" class="side-panel-backdrop" aria-hidden="true"></div>
+
+  <!-- SIDE PANEL -->
+  <aside id="side-panel" class="side-panel" aria-hidden="true" aria-label="Menu">
+    <div class="side-header">
+      <div>
+        <div class="side-title">ARQEDOX</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:6px">Games Link</div>
+      </div>
+      <button class="close-btn" id="side-close" aria-label="Close menu">Close ×</button>
+    </div>
+
+    <nav class="side-links" aria-label="Site features">
+      <a href="games.html" id="games-link">▶ Games Link</a>
+    </nav>
+
+    <!-- ✅ Native Banner Ad inserted below Games Link -->
+    <div style="margin-top:16px;text-align:center;">
+      <script async="async" data-cfasync="false" src="//pl27820672.effectivegatecpm.com/7ab320940c78e37d2d1517b77e667083/invoke.js"></script>
+      <div id="container-7ab320940c78e37d2d1517b77e667083"></div>
+    </div>
+
+    <div style="margin-top:auto;font-size:13px;color:rgba(255,255,255,0.75);text-align:center">
+      <small style="color:var(--accent)">Tip</small>
+      <div style="margin-top:8px">Open the gallery to view thumbnails, details and downloads.</div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- 🔥 Banner Ad (above ARQEDOX Welcome) -->
+    <div class="ad-banner">
+      <script type="text/javascript">
+        atOptions = {
+          'key' : '177b3fd5b7e96c14920a7b21db95825c',
+          'format' : 'iframe',
+          'height' : 90,
+          'width' : 728,
+          'params' : {}
+        };
+      </script>
+      <script type="text/javascript" src="//www.highperformanceformat.com/177b3fd5b7e96c14920a7b21db95825c/invoke.js"></script>
+    </div>
+
+    <!-- HERO -->
+    <section id="home" class="hero fade-in">
+      <div class="container hero-inner">
+        <div class="hero-left">
+          <h1>ARQEDOX</h1>
+          <p>Welcome — your hub for game downloads, mod tutorials and epic gameplay. Open the Games Link from the menu to view the full gallery and download pages.</p>
+          <div class="btn-row">
+            <a class="btn btn-accent" href="games.html">Explore Games</a>
+          </div>
+        </div>
+
+        <div style="min-width:200px;max-width:320px">
+          <img src="https://via.placeholder.com/320x200.png?text=ARQEDOX" alt="ARQEDOX" style="border-radius:12px;box-shadow:0 12px 40px rgba(0,0,0,0.6)">
+        </div>
+      </div>
+    </section>
+
+    <!-- LATEST VIDEOS -->
+    <section id="youtube" class="fade-in">
+      <div class="container">
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:12px">
+          <h2 class="section-title" style="margin:0">Latest Videos</h2>
+          <a class="btn btn-accent" href="https://youtube.com/@voltgamerzofficial?si=PPZtl4BtC0FLlqTt" target="_blank" rel="noopener">Visit Channel</a>
+        </div>
+
+        <div class="grid">
+          <div class="video-box fade-in">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/EKhxZR6jvpg" loading="lazy" allowfullscreen></iframe></div>
+            <div class="video-meta"><div class="video-title">How to Install Bully Anniversary Edition on Android | Working 2025 Gameplay Test ✅</div><div class="video-channel small">ARQEDOX</div></div>
+          </div>
+
+          <div class="video-box fade-in">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/eVOE4MeJGNM" loading="lazy" allowfullscreen></iframe></div>
+            <div class="video-meta"><div class="video-title">How to Play God of War 3 Smoothly on Android | Best Settings Guide</div><div class="video-channel small">ARQEDOX</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOP TUTORIALS -->
+    <section id="tutorials" class="fade-in">
+      <div class="container">
+        <h2 class="section-title">Top Tutorials</h2>
+        <div class="grid">
+          <div class="video-box fade-in">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/PT346jPoFmw" loading="lazy" allowfullscreen></iframe></div>
+            <div class="video-meta"><div class="video-title">HOW TO INSTALL GTA SAN ANDREAS IN ANDROID | HOW TO INSTALL GTA SA IN MOBILE | No Lag | No Crash</div><div class="video-channel small">ARQEDOX</div></div>
+          </div>
+
+          <div class="video-box fade-in">
+            <div class="video-embed"><iframe src="https://www.youtube.com/embed/DXLEJP67zfw" loading="lazy" allowfullscreen></iframe></div>
+            <div class="video-meta"><div class="video-title">SmackDown 2K11 PSP Download for Android | Highly Compressed 200MB PPSSPP Guide</div><div class="video-channel small">ARQEDOX</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="fade-in">
+      <div class="container">
+        <h2 class="section-title">Contact & Community</h2>
+        <p style="text-align:center;color:rgba(255,255,255,0.82)">Join our servers for updates and download links.</p>
+        <div class="community-row">
+          <a href="https://discord.gg/7XtMhf5Xh4" target="_blank" rel="noopener">Join Discord</a>
+          <a href="https://t.me/voltgameryt" target="_blank" rel="noopener">Join Telegram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer style="padding:18px;background:rgba(0,0,0,0.45);border-top:1px solid rgba(255,255,255,0.03);margin-top:20px;text-align:center">
+    &copy; <span id="year"></span> ARQEDOX
+  </footer>
+
+  <!-- 🔥 Popup Under Ad -->
+  <script type='text/javascript' src='//pl27820659.effectivegatecpm.com/69/4d/96/694d96c76f2a6ec8daf1f35fe66cc6fe.js'></script>
+
+  <!-- 🔥 Social Bar Ad -->
+  <script type='text/javascript' src='//pl27820850.effectivegatecpm.com/d9/c1/01/d9c10168e4bc86cc8deea56a594650ae.js'></script>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const hamburger = document.getElementById('hamburger');
+    const side = document.getElementById('side-panel');
+    const backdrop = document.getElementById('side-backdrop');
+    const closeBtn = document.getElementById('side-close');
+    const gamesLink = document.getElementById('games-link');
+
+    function openSide(){ side.classList.add('open'); backdrop.classList.add('open'); hamburger.classList.add('open'); hamburger.setAttribute('aria-expanded','true'); side.setAttribute('aria-hidden','false'); backdrop.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden'; }
+    function closeSide(){ side.classList.remove('open'); backdrop.classList.remove('open'); hamburger.classList.remove('open'); hamburger.setAttribute('aria-expanded','false'); side.setAttribute('aria-hidden','true'); backdrop.setAttribute('aria-hidden','true'); document.body.style.overflow = ''; }
+
+    hamburger.addEventListener('click', ()=> { if(side.classList.contains('open')) closeSide(); else openSide(); });
+    backdrop.addEventListener('click', closeSide);
+    closeBtn.addEventListener('click', closeSide);
+    document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') closeSide(); });
+
+    gamesLink && gamesLink.addEventListener('click', ()=> { closeSide(); });
+  </script>
+</body>
+</html>

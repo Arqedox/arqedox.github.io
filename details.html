@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ARQEDOX — Video Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg1:#140909;
+      --bg2:#2b0f0f;
+      --accent:#ff2d55;
+      --muted:rgba(255,255,255,0.92);
+      --card-bg:rgba(0,0,0,0.55)
+    }
+    *{box-sizing:border-box}
+    html,body{
+      margin:0;
+      height:100%;
+      font-family:Inter,system-ui,Roboto,sans-serif;
+      background:linear-gradient(135deg,var(--bg1),var(--bg2));
+      color:var(--muted);
+      overflow-x:hidden
+    }
+    .wrap{max-width:1000px;margin:22px auto;padding:18px}
+    a.back{color:var(--accent);text-decoration:none;display:inline-block;margin-bottom:12px}
+    .panel{
+      background:var(--card-bg);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 14px 40px rgba(0,0,0,0.6)
+    }
+    .ad-banner {
+      text-align:center;
+      margin-bottom:15px;
+    }
+    .video-frame{width:100%;height:560px;border-radius:10px;overflow:hidden;background:#000}
+    .video-frame iframe{width:100%;height:100%;border:0}
+    h1{font-family:'Press Start 2P';color:var(--accent);font-size:20px;margin:14px 0}
+    p.desc{line-height:1.6;color:rgba(255,255,255,0.9)}
+    .download-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .download-btn{display:inline-block;padding:12px 16px;border-radius:10px;background:var(--accent);color:#000;font-weight:800;text-decoration:none}
+    .meta-row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    .small{font-size:13px;color:rgba(255,255,255,0.8)}
+    @media (max-width:720px){
+      .video-frame{height:220px}
+      h1{font-size:16px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="games.html">← Back to Gallery</a>
+
+    <div class="panel" id="panel">
+
+      <!-- ✅ Banner Ad (above video) -->
+      <div class="ad-banner">
+        <script type="text/javascript">
+          atOptions = {
+            'key' : '177b3fd5b7e96c14920a7b21db95825c',
+            'format' : 'iframe',
+            'height' : 90,
+            'width' : 728,
+            'params' : {}
+          };
+        </script>
+        <script type="text/javascript" src="//www.highperformanceformat.com/177b3fd5b7e96c14920a7b21db95825c/invoke.js"></script>
+      </div>
+      <!-- ✅ End Banner Ad -->
+
+      <div class="video-frame" id="video-frame"></div>
+
+      <h1 id="v-title">Loading...</h1>
+      <div class="meta-row">
+        <div class="small" id="v-channel">ARQEDOX</div>
+        <div class="small" id="v-date"></div>
+      </div>
+
+      <p class="desc" id="v-desc">Please wait...</p>
+
+      <div class="download-row" id="download-row"></div>
+    </div>
+  </div>
+
+  <!-- ✅ Popup Under Ad (appears globally on every overview page) -->
+  <script type='text/javascript' src='//pl27820659.effectivegatecpm.com/69/4d/96/694d96c76f2a6ec8daf1f35fe66cc6fe.js'></script>
+  <!-- ✅ End Popup Ad -->
+
+  <script>
+    // videos data with descriptions + provided game links
+    const videos = {
+      "PT346jPoFmw": {
+        title: "HOW TO INSTALL GTA SAN ANDREAS IN ANDROID | HOW TO INSTALL GTA SA IN MOBILE | No Lag | No Crash",
+        desc: "GTA San Andreas — classic open-world action-adventure with memorable story missions, vehicles, customization and plenty of free-roam gameplay.",
+        download: ["https://shrinkme.click/MN4DKWa5"],
+        date: ""
+      },
+      "WtVI8G0tIQI": {
+        title: "Soul Calibur PSP Download for Android | Highly Compressed 260MB | PPSSPP Emulator Tutorial",
+        desc: "Soul Calibur — a fast-paced weapon-based fighting game known for iconic characters, deep combos and intense duels.",
+        download: ["https://shrinkme.click/PeSDn0C"],
+        date: ""
+      },
+      "Gq223QNBwOs": {
+        title: "GTA Vice City Stories PPSSPP Highly Compressed (340MB) | Download & Install on Android | Full Guide",
+        desc: "GTA Vice City Stories — neon-soaked, 80s-style open-world game with a strong soundtrack, story missions and retro atmosphere.",
+        download: ["https://shrinkme.click/qNtXM"],
+        date: ""
+      },
+      "DXLEJP67zfw": {
+        title: "SmackDown 2K11 PSP Download for Android | Highly Compressed 200MB PPSSPP Guide",
+        desc: "SmackDown 2K11 — wrestling action featuring a large roster, varied match types and arcade-style arena excitement.",
+        download: ["https://shrinkme.click/ordnd"],
+        date: ""
+      },
+      "KNwz_cDEtM4": {
+        title: "Spider-Man 3 PSP 40MB on Android | PPSSPP Emulator Tutorial (Safe & Fast Setup)",
+        desc: "Spider-Man 3 — superhero action with web-swinging traversal, combat and movie-inspired missions in a compact PSP build.",
+        download: ["https://shrinkme.click/8y7HtFj6"],
+        date: ""
+      },
+      "9r9AQr9j4-8": {
+        title: "How to Install GTA San Andreas on Android 2025 | Full Setup Guide for Mobile",
+        desc: "GTA San Andreas (alternate upload) — open-world driving, story missions and mod-friendly gameplay tailored for modern Android devices.",
+        download: ["https://shrinkme.click/tcNDGsX","https://shrinkme.click/lvwfJes"],
+        date: ""
+      },
+      "aEzMDtkd6Ns": {
+        title: "How to Install Cheat Codes in GTA San Andreas on Android | 2025 Working Tutorial",
+        desc: "Cheat-focused content for GTA San Andreas — showcasing gameplay modifiers that alter vehicles, weather, weapons and more for fun experimentation.",
+        download: ["https://shrinkme.click/Myqi"],
+        date: ""
+      },
+      "FaCjln_736c": {
+        title: "How to Install WWE 2K25 PPSSPP on Android | 2025 Working Method",
+        desc: "WWE 2K25 — pro-wrestling action with realistic rosters and match types, presented here for compact/portable play on Android.",
+        download: ["https://shrinkme.click/TKDL","https://shrinkme.click/NsBL2n"],
+        date: ""
+      },
+      "EKhxZR6jvpg": {
+        title: "How to Install Bully Anniversary Edition on Android | Working 2025 Gameplay Test ✅",
+        desc: "Bully Anniversary Edition — school-life action-adventure with humorous missions, character-driven story and exploration-focused gameplay.",
+        download: ["https://shrinkme.click/NMqL","https://shrinkme.click/8HsWI4"],
+        date: ""
+      }
+    };
+
+    function getParam(name){
+      const u = new URL(window.location.href);
+      return u.searchParams.get(name);
+    }
+
+    const vid = getParam('vid') || 'PT346jPoFmw';
+    const data = videos[vid];
+
+    if(!data){
+      document.getElementById('v-title').textContent = "Video not found";
+      document.getElementById('v-desc').textContent = "Requested video ID not found in the site database.";
+      document.getElementById('video-frame').innerHTML = "<div style='padding:20px;color:#fff'>No video available</div>";
+      document.getElementById('download-row').style.display = 'none';
+    } else {
+      document.getElementById('v-title').textContent = data.title;
+      document.getElementById('v-desc').textContent = data.desc;
+      document.getElementById('v-date').textContent = data.date || '';
+
+      const iframe = document.createElement('iframe');
+      iframe.src = "https://www.youtube.com/embed/" + vid + "?rel=0";
+      iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+      iframe.allowFullscreen = true;
+      iframe.loading = 'lazy';
+      document.getElementById('video-frame').appendChild(iframe);
+
+      const row = document.getElementById('download-row');
+      row.innerHTML = '';
+      if(Array.isArray(data.download) && data.download.length){
+        data.download.forEach((d, idx) => {
+          const a = document.createElement('a');
+          a.className = 'download-btn';
+          a.href = d;
+          a.target = '_blank';
+          a.rel = 'noopener';
+          a.textContent = data.download.length > 1 ? `⬇ Download ${idx+1}` : '⬇ Download Game';
+          row.appendChild(a);
+        });
+      } else if(typeof data.download === 'string' && data.download){
+        const a = document.createElement('a');
+        a.className = 'download-btn';
+        a.href = data.download;
+        a.target = '_blank';
+        a.rel = 'noopener';
+        a.textContent = '⬇ Download Game';
+        row.appendChild(a);
+      } else {
+        const span = document.createElement('div');
+        span.style.color = 'rgba(255,255,255,0.8)';
+        span.textContent = 'Download link coming soon';
+        row.appendChild(span);
+      }
+    }
+  </script>
+</body>
+</html>
